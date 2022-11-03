@@ -8,14 +8,10 @@
 </head>
 <body>
 <div>
-    <div>
-        {{date}}
-    </div>
     {% for obj in object_list %}
-     <p>{{ obj.first_name }}</p>
-     <p>{{ obj.username }}</p>
-     <p>{{ obj.pk }}</p>
-     <li><a href="{% url 'detalle_usuario' pk=obj.pk %}">Ver Datos</a></li>
+     <p>{{ obj.owner }}</p>
+     <p>{{ obj.keeper }}</p>
+     <p>{{ obj.pet }}</p>
     {% endfor %}
 </div>
 

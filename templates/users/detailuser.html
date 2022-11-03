@@ -11,12 +11,12 @@
     <div>
         {{date}}
     </div>
-    {% for obj in object_list %}
-     <p>{{ obj.first_name }}</p>
-     <p>{{ obj.username }}</p>
-     <p>{{ obj.pk }}</p>
-     <li><a href="{% url 'detalle_usuario' pk=obj.pk %}">Ver Datos</a></li>
-    {% endfor %}
+     <p>{{ object.first_name }}</p>
+     <p>{{ object.username }}</p>
+     <p> BOOKINGS: </p>
+     {% for book in object.get_all_bookings %}
+        <p>{{ book.pk }}</p>
+     {% endfor %}
 </div>
 
 </body>
