@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    {% load static %}
+    {% for obj in object_list %}
+     <img src="{% static obj.photo.url %}">
+     <video width="320" height="240" controls>
+         <source src="{% static obj.video.url %}" type="video/mp4">
+     </video>
+     <p>{{ obj.vaccination_observations }}</p>
+     <p> --------------------------------------------- </p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
