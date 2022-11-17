@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from .models import Owner
+from .models import Owner, Keeper, Availability
 
 
 # Create your views here.
@@ -25,16 +25,46 @@ class GetAllOwners(ListView):
         return context
 
 
+class GetAllKeepers(ListView):
+    model = Keeper
+    queryset = Keeper.objects.all()
+    template_name = "users/getkeepers.html"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['date'] = datetime.now()
+        return context
+
+
+class KeeperDaysView(ListView):
+    model = Availability
+    queryset = Availability.objects.all()
+    template_name = "users/dayskeeper.html"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['date'] = datetime.now()
+        return context
+
+
 # @login_required
 class OwnerDetailView(LoginRequiredMixin, DetailView):
     model = Owner
     template_name = "users/detailuser.html"
 
 
+class KeeperDetailView(LoginRequiredMixin, DetailView):
+    model = Keeper
+    template_name = "users/detailkeeper.html"
+
+
 # def Login(request):
 #     # template_name = "users/login.html"
 #     return render(request, 'users/login.html', {})
-
 
 
 def Login(request):

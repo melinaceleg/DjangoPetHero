@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <div>
+        {{date}}
+    </div>
+    {% for obj in object_list %}
+     <p>{{ obj.first_name }}</p>
+     <p>{{ obj.username }}</p>
+     <p>{{ obj.pk }}</p>
+     <li><a href="{% url 'detalle_usuario' pk=obj.pk %}">Ver Datos</a></li>
+    <p> --------------------------------------------- </p>
+    {% endfor %}
+</div>
+</body>
+</html>

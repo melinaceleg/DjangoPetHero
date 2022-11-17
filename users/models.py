@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 from bookings.models import Booking
 
 
-class Owner(User):
+class Owner(AbstractUser):
     phone = models.CharField(max_length=255)
 
     def get_all_bookings(self):
@@ -23,3 +23,9 @@ class Keeper(Owner):
 
     class Meta:
         verbose_name = 'Keeper'
+
+
+class Availability(models.Model):
+    day = models.DateField()
+    state = models.BooleanField(default=True)
+    keeper = models.ForeignKey(Keeper, on_delete=models.CASCADE)
