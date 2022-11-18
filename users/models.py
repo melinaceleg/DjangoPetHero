@@ -4,7 +4,7 @@ from django.db import models
 from bookings.models import Booking
 
 
-class Owner(AbstractUser):
+class Owner(User):
     phone = models.CharField(max_length=255)
 
     def get_all_bookings(self):

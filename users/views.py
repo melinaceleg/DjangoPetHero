@@ -1,9 +1,12 @@
 from datetime import datetime
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
@@ -66,14 +69,19 @@ class KeeperDetailView(LoginRequiredMixin, DetailView):
 #     # template_name = "users/login.html"
 #     return render(request, 'users/login.html', {})
 
-
+# @csrf_exempt
 def Login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
+        # user = authenticate(request, username=username, password=password) NO FUNCIONA
+        user = User.objects.get(username=username)
+        # if user is not None:
+        if user.password == password:
             form = login(request, user)
             return redirect(f"{user.pk}/detailUser")
+        else:
+            messages.add_message(request, messages.INFO, 'Please log in.')
+            # return render(request, 'user/login.html')
 
     return render(request, 'users/login.html', {})
