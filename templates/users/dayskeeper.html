@@ -9,12 +9,16 @@
 <body>
 <div>
     <div>
-        {{date}}
+        <h1> DIAS DISPONIBLES: </h1>
     </div>
-    {% if pk = object.keeper  %}
-     <p>{{ object.day }}</p>
-    <button type="submit" title="Reservar" name="Reserva">Reservar Día</button>
-    <p> --------------------------------------------- </p>
+    {% for obj in object_list %}
+        <p>{{ object.pk }}</p>
+        {% if pk == obj.keeper.pk  %}
+            <p>{{ object.day }}</p>
+            <button type="submit" title="Reservar" name="Reserva">Reservar Día</button>
+            <p> --------------------------------------------- </p>
+        {% endif %}
+    {% endfor %}
 
 
 

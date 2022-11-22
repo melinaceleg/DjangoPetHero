@@ -21,6 +21,9 @@ class Keeper(Owner):
                                 max_length=2)
     keep_price = models.FloatField()
 
+    def get_all_availability(self):
+        return Availability.objects.filter(keeper_id=self.pk)
+
     class Meta:
         verbose_name = 'Keeper'
 

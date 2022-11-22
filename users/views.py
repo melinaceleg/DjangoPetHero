@@ -82,6 +82,6 @@ def Login(request):
             return redirect(f"{user.pk}/detailUser")
         else:
             messages.add_message(request, messages.INFO, 'Please log in.')
-            # return render(request, 'user/login.html')
+            # return render(request, 'users/login.html', {})
 
     return render(request, 'users/login.html', {})

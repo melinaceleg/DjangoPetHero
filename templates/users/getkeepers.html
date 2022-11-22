@@ -9,15 +9,15 @@
 <body>
 <div>
     <div>
-        {{date}}
+        <h1> KEEPER: </h1>
     </div>
-    {% for obj in object_list %}
-     <p>{{ obj.first_name }}</p>
-     <p>{{ obj.username }}</p>
-     <p>{{ obj.pk }}</p>
-     <li><a href="{% url 'detalle_usuario' pk=obj.pk %}">Ver Datos</a></li>
-    <p> --------------------------------------------- </p>
-    {% endfor %}
+        {% for obj in object_list %}
+            <p>{{ obj.pk }}</p>
+            <p>User: {{ obj.username }}</p>
+            <p>First Name: {{ obj.first_name }}</p>
+            <li><a href="{% url 'detalle_usuario' pk=obj.pk %}">Ver Datos</a></li>
+            <p> --------------------------------------------- </p>
+        {% endfor %}
 </div>
 </body>
 </html>

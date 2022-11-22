@@ -9,15 +9,35 @@
 <body>
 <div>
     <div>
-        {{date}}
+        <h1> KEEPER: </h1>
     </div>
-     <p>{{ object.first_name }}</p>
-     <p>{{ object.username }}</p>
-     <li><a href="{% url 'dias-disponibles' pk=obj.pk %}">Ver Dias Disponibles</a></li>
-     <p> BOOKINGS: </p>
-     {% for book in object.get_all_bookings %}
-        <p>{{ book.pk }}</p>
-     {% endfor %}
+        <p>Nombre: {{ object.first_name }}</p>
+        <p>Apellido: {{ object.username }}</p>
+        <p>Telefono: {{ object.phone }}</p>
+        <p>Tamaño de mascota que cuida: {{ object.pet_size }}</p>
+        <p>Precio: ${{ object.keep_price }}</p>
+        <p> --------------------------------------------- </p>
+        <p> --------------------------------------------- </p>
+        <p> BOOKINGS: </p>
+            {% if object.get_all_bookings.count > 0  %}
+                {% for book in object.get_all_bookings %}
+                    <p>{{ book.pk }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No posee bookings</p>
+            {% endif %}
+        <p> --------------------------------------------- </p>
+        <p> --------------------------------------------- </p>
+        <p> DIAS DISPONIBLES: </p>
+            {% if object.get_all_availability.count > 0  %}
+                {% for day in object.get_all_availability %}
+                    <span>{{ day.day }}</span>
+                    <button type="submit" title="Reservar" name="Reserva">Reservar Día</button>
+                    <p> --------------------------------------------- </p>
+                {% endfor %}
+            {% else %}
+                <p>No posee días disponibles</p>
+            {% endif %}
 </div>
 
 </body>
