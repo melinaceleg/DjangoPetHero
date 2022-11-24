@@ -3,14 +3,14 @@ from datetime import date
 
 from django.db import models
 
+import users.models as users_models
+
 
 class Booking(models.Model):
     # owner = models.ForeignKey("users.Owner", on_delete=models.CASCADE, related_name="owners")
     keeper = models.ForeignKey("users.Keeper", on_delete=models.CASCADE, related_name="keepers")
     pet = models.ForeignKey("pets.Pet", on_delete=models.CASCADE, related_name="pets")
     price = models.FloatField()
-    start_date = models.DateField()
-    end_date = models.DateField()
     status = models.CharField(choices=(('r', 'Reserved'), ('p', 'In Progress'), ('f', 'Finalized')),
                               max_length=1,
                               default='r')
@@ -22,6 +22,12 @@ class Booking(models.Model):
     def calculate_price(self):
         price = self.get_total_days() * self.keeper.keep_price
         return price
+
+    def get_dates(self):
+        return [
+            aval.day
+            for aval in users_models.Availability.objects.filter(booking_id=self.pk).order_by('day')
+        ]
 
 
 class Review(models.Model):

@@ -9,7 +9,7 @@ class Pet(models.Model):
     vaccination_plan = models.ImageField
     vaccination_observations = models.CharField(max_length=1000)
     breed = models.CharField(max_length=255)
-    size = models.CharField(choices=(('sm', 'Small'),
-                                     ('md', 'Medium'),
-                                     ('lg', 'Large')),
-                            max_length=2)
+    size = models.CharField(choices=(('Small', 'Small'),
+                                     ('Medium', 'Medium'),
+                                     ('Large', 'Large')),
+                            max_length=10)

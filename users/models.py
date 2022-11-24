@@ -15,11 +15,12 @@ class Owner(User):
 
 
 class Keeper(Owner):
-    pet_size = models.CharField(choices=(('sm', 'Small'),
-                                         ('md', 'Medium'),
-                                         ('lg', 'Large')),
-                                max_length=2)
+    pet_size = models.CharField(choices=(('Small', 'Small'),
+                                         ('Medium', 'Medium'),
+                                         ('Large', 'Large')),
+                                max_length=10)
     keep_price = models.FloatField()
+
 
     def get_all_availability(self):
         return Availability.objects.filter(keeper_id=self.pk)
@@ -32,3 +33,4 @@ class Availability(models.Model):
     day = models.DateField()
     state = models.BooleanField(default=True)
     keeper = models.ForeignKey(Keeper, on_delete=models.CASCADE)
+    booking = models.ForeignKey("bookings.Booking", on_delete=models.CASCADE, related_name="bookings", null=True)
