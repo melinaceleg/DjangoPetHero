@@ -28,21 +28,20 @@
             <th>Precio</th>
         </tr>
         {% for obj in object_list %}
-            <tr>
-                <td>{{ obj.username }}</td>
-                <td>{{ obj.first_name }}</td>
-                <td>{{ obj.pet_size }}</td>
-                <td>${{ obj.keep_price }}</td>
-            </tr>
-    </table>
-
-
-            <p>ID Keeper: {{ obj.pk }}</p>
-            <p>Usuario Keeper: {{ obj.username }}</p>
-            <p>Nombre: {{ obj.first_name }}</p>
-            <li><a chref="{% url 'detalle_usuario' pk=obj.pk %}">Ver Datos</a></li>
-            <p> --------------------------------------------- </p>
+            {% if obj.pet_size == pet_size  %}
+                <tr>
+                    <td>{{ obj.username }}</td>
+                    <td>{{ obj.first_name }}</td>
+                    <td>{{ obj.pet_size }}</td>
+                    <td>${{ obj.keep_price }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
+        </table>
+
+
+
+
 </div>
 </body>
 </html>

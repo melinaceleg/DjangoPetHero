@@ -17,7 +17,9 @@
                 <td>{{ pet.breed }}</td>
                 <td>{{ pet.size }}</td>
                 <td>
-                    <button chref="{% url 'detalle_usuario' pk=obj.pk %}" class="btn btn-primary" title="Reservar" name="Reservar">Ver Keepers</button>
+                    <button class="btn btn-primary" title="Reservar" name="Reservar">
+                        <a href="{% url 'keepers_size' pet_size=pet.size %}">Ver Keepers</a>
+                    </button>
                 </td>
             </tr>
     {% endfor %}
