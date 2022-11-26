@@ -22,18 +22,29 @@
     </div>
         <table class="table table-dark table-striped">
         <tr class="table-light">
+            <th>ID Usuario</th>
             <th>Nombre</th>
             <th>Usuario</th>
             <th>Telefono</th>
         </tr>
             <tr>
+                <td>{{ object.pk }}</td>
                 <td>{{ object.first_name }}</td>
                 <td>{{ object.username }}</td>
                 <td>{{ object.phone }}</td>
             </tr>
         </table>
 
+    <div>
+        {% if object.get_class == "Owner"  %}
+            {% include 'users/includes/OwnerOptions.html' %}
+        {% endif %}
+        {% if object.get_class == "Keeper"  %}
+            {% include 'users/includes/KeeperOptions.html' %}
+        {% endif %}
+    </div>
+
+
 </div>
-<button>VER KEEPER 3</button>
 </body>
 </html>

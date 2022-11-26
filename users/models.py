@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 from bookings.models import Booking
+from pets.models import Pet
 
 
 class Owner(User):
@@ -9,6 +10,12 @@ class Owner(User):
 
     def get_all_bookings(self):
         return Booking.objects.filter(pet__owner_id=self.pk)
+
+    def get_all_pets(self):
+        return Pet.objects.filter(owner_id=self.pk)
+
+    def get_class(self):
+        return "Owner"
 
     class Meta:
         verbose_name = 'Owner'
@@ -24,6 +31,9 @@ class Keeper(Owner):
 
     def get_all_availability(self):
         return Availability.objects.filter(keeper_id=self.pk)
+
+    def get_class(self):
+        return "Keeper"
 
     class Meta:
         verbose_name = 'Keeper'

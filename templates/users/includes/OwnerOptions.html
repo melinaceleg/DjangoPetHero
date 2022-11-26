@@ -1,0 +1,27 @@
+<h2 class="display-5" style="background-color: skyblue"> Mascotas: </h2>
+{% if object.get_all_pets.count > 0  %}
+    <table class="table table-dark table-striped">
+        <tr class="table-light">
+            <th>ID Mascota</th>
+            <th>Nombre</th>
+            <th>Observaciones Vacunacion</th>
+            <th>Raza</th>
+            <th>Tamaño</th>
+            <th>Reserva</th>
+        </tr>
+    {% for pet in object.get_all_pets %}
+            <tr>
+                <td>{{ pet.pk }}</td>
+                <td>{{ pet.name }}</td>
+                <td>{{ pet.vaccination_observations }}</td>
+                <td>{{ pet.breed }}</td>
+                <td>{{ pet.size }}</td>
+                <td>
+                    <button chref="{% url 'detalle_usuario' pk=obj.pk %}" class="btn btn-primary" title="Reservar" name="Reservar">Ver Keepers</button>
+                </td>
+            </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+        <p>No posee perros</p>
+{% endif %}
