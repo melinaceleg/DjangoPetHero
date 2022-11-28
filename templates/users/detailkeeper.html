@@ -42,7 +42,7 @@
                     {% if day.state == True  %}
                         <span>{{ day.day }} --- </span>
                         <button class="btn btn-primary" title="Reservar" name="Reservar">
-                            <a href="{% url 'nuevo_booking' pet_pk=pet_id keeper_pk=object.pk availability_pk=day.pk %}">Reservar</a>
+                            <a class="btn btn-primary" href="{% url 'nuevo_booking' pet_pk=pet_id keeper_pk=object.pk availability_pk=day.pk %}">Reservar</a>
                         </button>
                         <p> --------------------------------------------- </p>
                     {% endif %}

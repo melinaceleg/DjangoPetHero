@@ -36,11 +36,11 @@
         </table>
 
     <div>
-        {% if object.get_class == "Owner"  %}
-            {% include 'users/includes/OwnerOptions.html' %}
-        {% endif %}
         {% if object.get_class == "Keeper"  %}
             {% include 'users/includes/KeeperOptions.html' %}
+        {% endif %}
+        {% if object.get_class == "Owner"  %}
+            {% include 'users/includes/OwnerOptions.html' %}
         {% endif %}
     </div>
 

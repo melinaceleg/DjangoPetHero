@@ -18,12 +18,12 @@
                 <td>{{ pet.size }}</td>
                 <td>
                     <button class="btn btn-primary" title="Reservar" name="Reservar">
-                        <a href="{% url 'keepers_size' pet_pk=pet.pk pet_size=pet.size %}">Ver Keepers</a>
+                        <a class="btn btn-primary" href="{% url 'keepers_size' pet_pk=pet.pk pet_size=pet.size %}">Ver Keepers</a>
                     </button>
                 </td>
             </tr>
     {% endfor %}
     </table>
     {% else %}
-        <p>No posee perros</p>
+<p><b>No posee perros</b></p>
 {% endif %}

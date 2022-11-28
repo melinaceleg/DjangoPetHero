@@ -41,7 +41,7 @@
                     <td>${{ obj.keep_price }}</td>
                     <td>
                     <button class="btn btn-primary" title="VerDetalle" name="VerDetalle">
-                        <a href="{% url 'detalle_keeper' pet_id=pet_pk pk=obj.pk %}">Ver Detalle</a>
+                        <a class="btn btn-primary" href="{% url 'detalle_keeper' pet_id=pet_pk pk=obj.pk %}">Ver Detalle</a>
                     </button>
                 </td>
                 </tr>

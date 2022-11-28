@@ -32,6 +32,7 @@ class Keeper(Owner):
     def get_all_availability(self):
         return Availability.objects.filter(keeper_id=self.pk)
 
+
     def get_class(self):
         return "Keeper"
 

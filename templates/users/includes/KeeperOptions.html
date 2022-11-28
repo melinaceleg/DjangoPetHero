@@ -1,0 +1,19 @@
+<h2 class="display-5" style="background-color: skyblue" xmlns="http://www.w3.org/1999/html"> Bookings: </h2>
+{% if object.get_all_bookings.count > 0  %}
+    <table class="table table-dark table-striped">
+        <tr class="table-light">
+            <th>ID Booking</th>
+            <th>Mascota</th>
+            <th>Dueño/Owner</th>
+        </tr>
+    {% for bk in object.get_all_bookings %}
+            <tr>
+                <td>{{ bg.pk }}</td>
+                <td>{{ bg.pet.name }}</td>
+                <td>{{ bg.pet.owner.first_name }}</td>
+            </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+        <p><b>No posee bookings</b></p>
+{% endif %}
