@@ -43,4 +43,5 @@ class Availability(models.Model):
     day = models.DateField()
     state = models.BooleanField(default=True)
     keeper = models.ForeignKey(Keeper, on_delete=models.CASCADE)
-    booking = models.ForeignKey("bookings.Booking", on_delete=models.CASCADE, related_name="bookings", null=True)
+    # booking = models.ForeignKey("bookings.Booking", on_delete=models.CASCADE, related_name="bookings", null=True, blank=True)
+

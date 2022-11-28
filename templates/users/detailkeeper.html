@@ -36,27 +36,19 @@
                 <td>${{ object.keep_price }}</td>
             </tr>
         </table>
-        <p> --------------------------------------------- </p>
-        <p> --------------------------------------------- </p>
-        <p> BOOKINGS: </p>
-            {% if object.get_all_bookings.count > 0  %}
-                {% for book in object.get_all_bookings %}
-                    <p>{{ book.pk }}</p>
-                {% endfor %}
-            {% else %}
-                <p>No posee bookings</p>
-            {% endif %}
-        <p> --------------------------------------------- </p>
-        <p> --------------------------------------------- </p>
-        <p> DIAS DISPONIBLES: </p>
+        <h2 class="display-5" style="background-color: skyblue"> Días disponibles: </h2>
             {% if object.get_all_availability.count > 0  %}
                 {% for day in object.get_all_availability %}
-                    <span>{{ day.day }}</span>
-                    <button type="submit" title="Reservar" name="Reserva" onclick={{ funcion }}>Reservar Día</button>
-                    <p> --------------------------------------------- </p>
+                    {% if day.state == True  %}
+                        <span>{{ day.day }} --- </span>
+                        <button class="btn btn-primary" title="Reservar" name="Reservar">
+                            <a href="{% url 'nuevo_booking' pet_pk=pet_id keeper_pk=object.pk availability_pk=day.pk %}">Reservar</a>
+                        </button>
+                        <p> --------------------------------------------- </p>
+                    {% endif %}
                 {% endfor %}
             {% else %}
-                <p>No posee días disponibles</p>
+                <p><b>No posee días disponibles</b></p>
             {% endif %}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

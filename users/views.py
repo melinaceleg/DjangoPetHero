@@ -7,9 +7,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView, FormView, CreateView
 from django.views.generic.detail import DetailView
 
+from bookings.models import Booking
+from pets.models import Pet
 from .models import Owner, Keeper, Availability
 
 
@@ -44,6 +46,7 @@ class GetAllKeepers(ListView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         context["pet_size"] = self.kwargs["pet_size"]
+        context["pet_pk"] = self.kwargs["pet_pk"]
         # Add in a QuerySet of all the books
         context['date'] = datetime.now()
         return context
@@ -59,7 +62,17 @@ class KeeperDetailView(LoginRequiredMixin, DetailView): #Poner como FormView!!!!
     model = Keeper
     template_name = "users/detailkeeper.html"
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        context["pet_id"] = self.kwargs["pet_id"]
+        # Add in a QuerySet of all the books
+        context['date'] = datetime.now()
+        return context
+
     #def post(self): Y HACER EL POST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 
 
@@ -83,3 +96,6 @@ def Login(request):
             # return render(request, 'users/login.html', {})
 
     return render(request, 'users/login.html', {})
+
+
+

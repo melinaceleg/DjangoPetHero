@@ -8,12 +8,18 @@ import users.models as users_models
 
 class Booking(models.Model):
     # owner = models.ForeignKey("users.Owner", on_delete=models.CASCADE, related_name="owners")
-    keeper = models.ForeignKey("users.Keeper", on_delete=models.CASCADE, related_name="keepers")
+    # keeper = models.ForeignKey("users.Keeper", on_delete=models.CASCADE, related_name="keepers")
+    availability = models.ForeignKey("users.Availability", on_delete=models.CASCADE, related_name="availabilities", null=True, blank=True)
     pet = models.ForeignKey("pets.Pet", on_delete=models.CASCADE, related_name="pets")
-    price = models.FloatField()
-    status = models.CharField(choices=(('r', 'Reserved'), ('p', 'In Progress'), ('f', 'Finalized')),
-                              max_length=1,
-                              default='r')
+    # price = models.FloatField()
+    status = models.CharField(choices=(('Reservado', 'Reservado'), ('En Progreso', 'En Progreso'), ('Finalizado', 'Finalizado')),
+                              max_length=30,
+                              default='Reservado')
+
+    # def __init__(self, avail, vpet, vprice):
+    #     self.availability = avail
+    #     self.pet = vpet
+    #     self.price = vprice
 
     def get_total_days(self):
         delta = self.end_date - self.start_date
